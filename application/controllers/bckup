@@ -1,0 +1,123 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Home extends CI_Controller {
+
+	public function index()
+	{
+		$data = [
+			[
+				"bulan"=>"Januari",
+				"jumlah"=>234
+			],
+			[
+				"bulan"=>"Februari",
+				"jumlah"=>240
+			],
+			[
+				"bulan"=>"Maret",
+				"jumlah"=>250
+			],
+			[
+				"bulan"=>"April",
+				"jumlah"=>240
+			],
+			[
+				"bulan"=>"Mei",
+				"jumlah"=>280
+			],
+			[
+				"bulan"=>"Juni",
+				"jumlah"=>260
+			],
+			[
+				"bulan"=>"Juli",
+				"jumlah"=>290
+			],
+			[
+				"bulan"=>"Agustus",
+				"jumlah"=>270
+			],
+			[
+				"bulan"=>"September",
+				"jumlah"=>300
+			],
+			[
+				"bulan"=>"Oktober",
+				"jumlah"=>275
+			],
+			[
+				"bulan"=>"November",
+				"jumlah"=>310
+			],
+			[
+				"bulan"=>"Desember",
+				"jumlah"=>285
+			],
+		];
+		$range=3;
+		$range2=6;
+		$datasum=[];
+		$jmlahplus=0;
+		$blnplus=0;
+		foreach ($data as $key => $value) {
+			$jmlahplus++;
+			$blnplus++;
+			$jmlah[]=['jml'.$jmlahplus =>$value['jumlah']];
+			$bulan[]=['jml'.$blnplus=>$value['bulan']];
+			$jml[]=$value['jumlah'];
+			$bln[]=$value['bulan'];
+		}
+		$sum = array_sum(array_slice($jml, 0, $range));
+
+		$result = array($range - 1 => $sum / $range);
+		
+		for ($i = $range; $i < count($jml); $i++) {
+			$result[$i] = $result[$i - 1] + ($jml[$i] - $jml[$i - $range]) / $range;
+			
+		}
+		// print_r($result);
+
+		$sum2 = array_sum(array_slice($result, 0, $range));
+
+		$result2 = array($range => $sum2 / $range);
+
+		for ($i = $range+1; $i < count($jml); ++$i) {
+			$result2[$i] =($result2[$i-1]  ) ;
+			// $result2[$i] = ($result[$i-1]+256.67+260.00)/$range  ;
+		}
+		print_r($result2);
+		array_unshift($result,0,0);
+
+		$results = array();
+		$resplus=0;
+		foreach ($result as $key => $value) {
+			$resplus++;
+			$resultdata[]=['jml'.$resplus => $value];
+		}
+		
+
+		array_map(function($a, $b, $c ) use (&$results) {
+			// print_r($c);
+
+			$key = current(array_keys($a));
+			$a[$key] = array('jumlah' => $a[$key]);
+
+			// Obtain the key again as the second array may have a different key.
+			$key = current(array_keys($b));
+			$b[$key] = array('bulan' => $b[$key]);
+
+			$key = current(array_keys($c));
+			$c[$key] = array('result' => $c[$key]);
+
+			$results += array_merge_recursive($a, $b, $c);
+
+		}, $jmlah, $bulan,$resultdata);
+
+		$datas['data']=$results;
+		return $this->load->view('index',$datas);
+
+		
+		
+	}
+}
