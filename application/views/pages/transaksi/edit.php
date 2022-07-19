@@ -1,10 +1,10 @@
 <div class="card" style="height: 80vh;">
 	<div class="card-body">
-		<form class="form-horizontal form-material" action="<?= base_url('bahan/update/'.$transaksi->id_bahan) ?>" method="post">
+		<form class="form-horizontal form-material" action="<?= base_url('transaksi/update/'.$transaksi->id_transaksi) ?>" method="post">
 		<div class="form-group mb-4">
 		<label class="col-md-12 p-0">Nama Bahan</label>
 		<div class="col-md-12 border-bottom p-0">
-			<select  placeholder="Nama Bahan" name="nama_bahan"
+			<select placeholder="Nama Bahan" name="nama_bahan"
 					class="form-control p-0 border-0" >
 					<option value="<?= $transaksi->id_bahan ?>"><?= $transaksi->nama_bahan ?></option>
 					<?php foreach ($bahan as $key => $value) { ?>

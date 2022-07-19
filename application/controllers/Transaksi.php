@@ -73,7 +73,6 @@ class Transaksi extends CI_Controller {
 				'id_karyawan'=>$this->session->userdata('id_user'),
 				'jumlah'=>$this->input->post('jumlah'),
 				'total_harga'=>$this->input->post('total_harga'),
-				'total_harga'=>$this->input->post('total_harga'),
 			];
 			$this->model->update_transaksi($id,'transaksi',$data);
 			return redirect('transaksi/index');			

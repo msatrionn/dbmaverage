@@ -27,12 +27,11 @@ class Peramalan extends CI_Controller {
 			$bahan=$this->input->get('bahan');
 			
 			if (count($this->model->transaksi_ramal($tgl_awal,$tgl_akhir,$bahan)->result())>4) {
+				// 1.ambil data dari database kemudian disimpan dalam array data_ramal
 				$datas['bahan_id']=$bahan;
 				$datas['tgl_awal']=$tgl_awal;
 				$datas['tgl_akhir']=$tgl_akhir;
 				$data['transaksi']=$this->model->transaksi_ramal($tgl_awal,$tgl_akhir,$bahan)->result();
-
-				
 				foreach ($data['transaksi'] as $key => $valuess) {
 					$data_ramal[]= [
 						'tahun'=>$valuess->tahun,
@@ -41,6 +40,8 @@ class Peramalan extends CI_Controller {
 						'jumlah'=>$valuess->jumlah,
 					];
 				}
+				// 1.ambil data dari database kemudian disimpan dalam array data_ramal
+
 				$range=3;
 				$jmlahplus=0;
 				$blnplus=0;
@@ -71,7 +72,7 @@ class Peramalan extends CI_Controller {
 				}
 
 
-				// movinga verage ke2
+				// movinga verage ke2 dengan mengurangi data 3 bulan sebelumnya
 
 				for ($i=2; $i <count($jml)-2 ; $i++) { 
 					$res1[$i]=$result[$i]/3;
@@ -152,6 +153,8 @@ class Peramalan extends CI_Controller {
 					$resplus5++;
 					$resultdata5[$i]=['jml'.$resplus5 => $result_ft[$i]];
 				}
+
+				// masukan kedalam 1 array
 				
 				array_map(function($a, $b, $c, $d, $e, $f, $g, $h, $i) use (&$results) {
 
@@ -186,6 +189,8 @@ class Peramalan extends CI_Controller {
 					$results += array_merge_recursive($a, $b, $c, $d ,$e, $f, $g, $h,$i);
 
 				}, $jmlah, $bulan,$resultdata,$resultdata2, $resultdata3, $resultdata4, $resultdata5,$tahun, $monthnumber);
+
+				// masukan kedalam 1 array
 
 				$datas['data']=$results;
 				$datas['last_ft']=end($result_ft);

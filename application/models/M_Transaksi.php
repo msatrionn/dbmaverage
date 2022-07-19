@@ -42,4 +42,7 @@ class M_Transaksi extends CI_Model
 	public function laporan_filter($filter,$filter2){
 		return $this->db->query("select year(transaksi.tanggal_transaksi) as tahun, monthname(transaksi.tanggal_transaksi) as bulan, sum(transaksi.jumlah) as jumlah, sum(transaksi.total_harga) as total_harga from transaksi where tanggal_transaksi between" ." '". "$filter"."'"."and"." '" ."$filter2" ."' "  ."group by year(tanggal_transaksi), monthname(tanggal_transaksi)");
 	}
+	public function delete_transaksi($id,$table){
+		return $this->db->where('id_transaksi',$id)->delete($table);
+	}	
 }
