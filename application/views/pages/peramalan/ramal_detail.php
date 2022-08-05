@@ -21,12 +21,12 @@
 									<tr>
 										<td><?= $no++ ?></td>
 										<td><?= date_format(date_create($value['bulan']),"M-Y") ?></td>
-										<td><?=  $value['jumlah'] ?></td>
-										<td><?= $value ['result']?> </td>
-										<td><?= $value ['result2']?></td>
-										<td><?= $value ['at']?></td>
-										<td><?= $value ['bt']?></td>
-										<td><?= $value ['ft']?></td>
+										<td><?= $value['jumlah'] ?></td>
+										<td><?= round($value ['result'])?> </td>
+										<td><?= round($value ['result2'])?></td>
+										<td><?= round($value ['at'])?></td>
+										<td><?= round($value ['bt'])?></td>
+										<td><?= round($value ['ft'])?><?= $satuan ?></td>
 									</tr>
 									<?php } ?>
 									<tr>
@@ -37,7 +37,7 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td><?= $last_ft?></td>
+									<td><?= $last_ft?><?= $satuan ?></td>
 									</tr>
 
                                 </table>

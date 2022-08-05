@@ -68,7 +68,6 @@ class Peramalan extends CI_Controller {
 				
 				for ($i = $range; $i < count($jml); $i++) {
 					$result[$i] = $result[$i - 1] + ($jml[$i] - $jml[$i - $range]) / $range;
-					
 				}
 
 
@@ -194,6 +193,7 @@ class Peramalan extends CI_Controller {
 
 				$datas['data']=$results;
 				$datas['last_ft']=end($result_ft);
+				$datas['satuan']=$this->db->where('id_bahan',$bahan)->get("m_bahan")->row()->satuan;
 				$datas['bahan']=$this->model->laporan_detail_bahan_all()->result();
 				$this->load->view('layouts/head.php');
 				$this->load->view('layouts/nav_admin.php');
@@ -357,6 +357,7 @@ class Peramalan extends CI_Controller {
 		$datas['data']=$results;
 		$datas['last_ft']=end($result_ft);
 		$datas['bahan']=$this->model->laporan_detail_bahan_all()->result();
+		$datas['satuan']=$this->db->where('id_bahan',$bahan)->get("m_bahan")->row()->satuan;
 		$this->load->view('layouts/head.php');
 		$this->load->view('layouts/nav_admin.php');
 		$this->load->view('pages/peramalan/ramal_detail.php',$datas);

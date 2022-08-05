@@ -24,12 +24,12 @@
 											<?php $no++; ?>
 										</td>
 										<td><?= $value['bulan'] ?>-<?= $value['tahun'] ?></td>
-										<td><?=  $value['jumlah'] ?></td>
-										<td><?= $value ['result']?> </td>
-										<td><?= $value ['result2']?></td>
-										<td><?= $value ['at']?></td>
-										<td><?= $value ['bt']?></td>
-										<td><?= $value ['ft']?></td>
+										<td><?= $value['jumlah'] ?></td>
+										<td><?= round($value ['result'])?> </td>
+										<td><?= round($value ['result2'])?></td>
+										<td><?= round($value ['at'])?></td>
+										<td><?= round($value ['bt'])?></td>
+										<td><?= round($value ['ft'])?> <?= $satuan ?></td>
 										<form action="<?= base_url("peramalan/save_ramal") ?>" method="post">
 										<input type="hidden" name="bahan[]" value="<?= $bahan_id ?>">
 										<input type="hidden" name="jumlah[]" value="<?= $value['jumlah'] ?>">
@@ -46,7 +46,7 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td><?= $last_ft?></td>
+									<td><?= $last_ft?><?= $satuan ?></td>
 									</tr>
 									<button type="submit" class="btn btn-success">simpan</button>
 									</form>
