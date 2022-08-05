@@ -40,7 +40,7 @@
 												<td><?= $no ?></td>
 												<td><?= $value->bulan ?>-<?= $value->tahun ?></td>
 												<td><?= $value->jumlah ?></td>
-												<td><?= $value->total_harga ?></td>
+												<td><?= "Rp " . number_format($value->total_harga,2,',','.') ?></td>
 												<td><a href="<?= base_url('transaksi/laporan_detail/'.$value->tahun."-".date("m", strtotime($value->bulan))) ?>" class="btn btn-primary">Detail</a></td>
 											</tr>
 										<?php } ?>

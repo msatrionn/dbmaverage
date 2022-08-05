@@ -27,7 +27,7 @@
 												<td><?= $value->nama_bahan ?></td>
 												<td><?= $value->nama_karyawan ?></td>
 												<td><?= $value->jumlah ?></td>
-												<td><?= $value->total_harga ?></td>
+												<td><?= "Rp " . number_format($value->total_harga,2,',','.') ?></td>
 												<td><?= date_format(date_create($value->tanggal_transaksi),"d-M-Y") ?></td>
 												<td>
 													<div class="d-flex">

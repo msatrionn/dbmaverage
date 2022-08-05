@@ -24,7 +24,7 @@
 												<td><?= $no ?></td>
 												<td><?= $value->nama_bahan ?></td>
 												<td><?= $value->satuan ?></td>
-												<td><?= $value->harga_bahan ?></td>
+												<td><?= "Rp " . number_format($value->harga_bahan,2,',','.') ?></td>
 												<td>
 													<div class="d-flex">
 														<a href="<?= base_url('bahan/edit/'.$value->id_bahan) ?>" class="btn btn-warning" style="margin-right: 10px;">Edit</a>
